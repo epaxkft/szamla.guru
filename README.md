@@ -27,6 +27,12 @@ curl --location --request GET 'http://DOMAIN/api/v1/payment-modes' \
 ## Store partner data
 You can store lot of data from your partner. We created two example for maximum data and for minimum data.
 
+Possible elements for tax_type:
+* person (if it is NOT company and has NOT tax number)
+* company-hu (if it is hungarian company and has tax number)
+* company-eu (if it is europiean company and has tax number)
+* company-third (if it is out of europiean company and has tax number)
+
 ### Store MAXIMUM partner data
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/partner/store' \
@@ -64,6 +70,7 @@ curl --location --request POST 'http://DOMAIN/api/v1/partner/store' \
 ```
 
 ### Store MINIMUM partner data
+
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/partner/store' \
 --header 'Authorization: Bearer KEY' \
@@ -95,6 +102,17 @@ curl --location --request GET 'http://DOMAIN/api/v1/partner/get-all' \
 ```
 
 ## Store invoice
+
+Possible elements of payment_mode:
+* cash
+* transfer
+* check
+* voucher
+* card
+* einvoice
+* compensation
+* cash_on_delivery
+
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 --header 'Authorization: Bearer KEY' \
