@@ -24,6 +24,13 @@ curl --location --request GET 'http://DOMAIN/api/v1/payment-modes' \
 --data-raw ''
 ```
 
+## Get available currencies
+```
+curl --location --request GET 'http://DOMAIN/api/v1/currencies' \
+--header 'Authorization: Bearer KEY' \
+--data-raw ''
+```
+
 ## Store partner data
 You can store lot of data from your partner. We created two example for maximum data and for minimum data.
 
@@ -113,6 +120,7 @@ Possible elements of payment_mode:
 * compensation
 * cash_on_delivery
 
+### Store MAXIMUM invoice data
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 --header 'Authorization: Bearer KEY' \
@@ -126,6 +134,46 @@ curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
   "round_to": 1,
   "currency_code": "HUF",
   "currency_exchange": 1,
+  "nav_send_type": 1,
+  "is_paid": false,
+  "items": [
+    {
+      "name": "Bread",
+      "unit_price": 1500,
+      "qty": 5,
+      "qty_name": "kg",
+      "tax": "27%",
+      "discount": null,
+      "comment": null
+    },
+    {
+      "name": "Egg",
+      "unit_price": 50,
+      "qty": 12,
+      "qty_name": "db",
+      "tax": "27%",
+      "discount": 10,
+      "comment": "Beautiful egg"
+    }
+  ],
+  "comment": "Invoice comment",
+  "is_cover_page": 0
+}'
+```
+
+### Store MINIMUM invoice data
+```
+curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
+--header 'Authorization: Bearer KEY' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "partner_id": 158,
+  "invoice_pad_id": 1,
+  "payment_mode": "transfer",
+  "fulfillment_date": "2021-03-31",
+  "payment_date": "2021-03-31",
+  "round_to": 1,
+  "currency_code": "HUF",
   "nav_send_type": 1,
   "is_paid": false,
   "items": [
