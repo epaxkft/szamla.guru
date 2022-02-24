@@ -4,13 +4,13 @@ Production system URL: https://app.szamla.guru
 
 Test system URL: https://dev.billing.epax.hu
 
-
 You should replace the following variables in curl commands:
-* DOMAIN - you can see 2 URL above
-* KEY - you can get here: https://DOMAIN/settings/company/api-key/list
 
+- DOMAIN - you can see 2 URL above
+- KEY - you can get here: https://DOMAIN/settings/company/api-key/list
 
 ## Get vat types:
+
 ```
 curl --location --request GET 'https://DOMAIN/api/v1/vat-types' \
 --header 'Authorization: Bearer KEY' \
@@ -18,6 +18,7 @@ curl --location --request GET 'https://DOMAIN/api/v1/vat-types' \
 ```
 
 ## Get payment modes
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/payment-modes' \
 --header 'Authorization: Bearer KEY' \
@@ -25,6 +26,7 @@ curl --location --request GET 'http://DOMAIN/api/v1/payment-modes' \
 ```
 
 ## Get available currencies
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/currencies' \
 --header 'Authorization: Bearer KEY' \
@@ -32,15 +34,18 @@ curl --location --request GET 'http://DOMAIN/api/v1/currencies' \
 ```
 
 ## Store partner data
+
 You can store lot of data from your partner. We created two example for maximum data and for minimum data.
 
 Possible elements for tax_type:
-* person (if it is NOT company and has NOT tax number)
-* company-hu (if it is hungarian company and has tax number)
-* company-eu (if it is europiean company and has tax number)
-* company-third (if it is out of europiean company and has tax number)
+
+- person (if it is NOT company and has NOT tax number)
+- company-hu (if it is hungarian company and has tax number)
+- company-eu (if it is europiean company and has tax number)
+- company-third (if it is out of europiean company and has tax number)
 
 ### Store MAXIMUM partner data
+
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/partner/store' \
 --header 'Authorization: Bearer KEY' \
@@ -95,6 +100,7 @@ curl --location --request POST 'http://DOMAIN/api/v1/partner/store' \
 ```
 
 ## Get partner data
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/partner/1/get' \
 --header 'Authorization: Bearer KEY' \
@@ -102,6 +108,7 @@ curl --location --request GET 'http://DOMAIN/api/v1/partner/1/get' \
 ```
 
 ## Get all partners
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/partner/get-all' \
 --header 'Authorization: Bearer KEY' \
@@ -111,16 +118,23 @@ curl --location --request GET 'http://DOMAIN/api/v1/partner/get-all' \
 ## Store invoice
 
 Possible elements of payment_mode:
-* cash
-* transfer
-* check
-* voucher
-* card
-* einvoice
-* compensation
-* cash_on_delivery
+
+- cash
+- transfer
+- check
+- voucher
+- card
+- einvoice
+- compensation
+- cash_on_delivery
+
+Possible elements of language:
+
+- en
+- hu (default)
 
 ### Store MAXIMUM invoice data
+
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 --header 'Authorization: Bearer KEY' \
@@ -136,6 +150,7 @@ curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
   "currency_exchange": 1,
   "nav_send_type": 1,
   "is_paid": false,
+  "language": "hu",
   "items": [
     {
       "name": "Bread",
@@ -162,6 +177,7 @@ curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 ```
 
 ### Store MINIMUM invoice data
+
 ```
 curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 --header 'Authorization: Bearer KEY' \
@@ -202,6 +218,7 @@ curl --location --request POST 'http://DOMAIN/api/v1/invoice/store' \
 ```
 
 ## Download PDF of invoice
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/invoice/1/download' \
 --header 'Authorization: Bearer KEY' \
@@ -209,6 +226,7 @@ curl --location --request GET 'http://DOMAIN/api/v1/invoice/1/download' \
 ```
 
 ## Get all invoice pad
+
 ```
 curl --location --request GET 'http://DOMAIN/api/v1/invoice-pads/get-all' \
 --header 'Authorization: Bearer KEY' \
